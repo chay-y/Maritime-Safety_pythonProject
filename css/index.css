@@ -1,0 +1,207 @@
+@charset "utf-8";
+
+*{margin: 0;padding: 0;}
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    color: rgb(20, 20, 20);
+    background-image:url('../img/background_img.png');
+    background-size: cover;
+  }
+ul, ol{list-style: none;}
+img{vertical-align: top; border: 0;}
+a{text-decoration: none; color: rgb(20, 20, 20);}
+
+.wrap{
+    width: 100%;
+    min-height: 1200px;
+}
+
+.header{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    height: 80px;
+}
+
+.headerIn{
+    width: 1200px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .topMenu ul{display: flex;}
+.header .topMenu li a:hover{color: rgb(67, 146, 211);}
+.header .topMenu li{margin-right: 80px;}
+.header .member ul{display: flex;}
+.header .member li{margin-left: 20px;}
+.header .member li a:hover{text-decoration: underline;}
+
+.main1{
+    position: relative;
+    height: 480px;
+    overflow: hidden;
+    margin-bottom: 50px;
+    background-color: rgb(241, 232, 255);
+}
+
+.main1 .l_move{
+    position: absolute;
+    top : 50%;
+    left: 50%;
+    margin-left: -600px;
+    margin-top: -26px;
+}
+.main1 .r_move{
+    position: absolute;
+    top : 50%;
+    right: 50%;
+    margin-right: -600px;
+    margin-top: -26px;
+}
+
+.mainImg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: -800px;
+}
+
+.main2{
+    width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.main2 h2{
+    margin-bottom: 15px;
+}
+
+.main2 .ulsanNews {
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 10px;
+    height: 60px;
+    font-size: 17px;
+    margin-bottom: 50px;
+}
+
+.main2 .ulsanNews ul li{
+    margin :20px 20px;
+}
+
+.menuHiper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 0 300px;
+    margin-bottom: 50px;
+}
+
+.menuHiper .menuImg{
+    height: 60px; /*사진삽입시 삭제(임시)*/
+    width: 50px; /*사진삽입시 삭제(임시)*/
+    background-color: rgb(255, 255, 255);
+    box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 10px;
+}
+
+.mainBn{
+    width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.mainBn .mainBnT{
+    width: 800px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainBn .mainBnT a{
+    padding-top: 2px;
+}
+
+.mainBnWarp{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainBn1{
+    background-color: rgb(255, 255, 255);
+    box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 10px;
+    font-size: 17px;
+    height: 460px;
+    width: 800px;
+}
+
+.mainBn1 ul li {
+    padding: 15px;
+    border-bottom: gainsboro solid 2px;
+}
+
+
+.mainBn1 ul li a .mainBn1T{
+    display: flex; 
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 19px;
+}
+
+.mBn1Date{
+    font-size: 12px;
+}
+
+.mainBn2{
+    background-color: rgb(255, 255, 255);
+    box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 10px;
+    font-size: 17px;
+    height: 460px;
+    width: 385px;
+}
+
+.footer{
+    width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    border-top: gainsboro solid 2px;
+    display: flex;
+    justify-content: space-between;
+}
+.footer .footer1 .footer1-1{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.footer1-1 li{
+    margin-right: 20px;
+}
+.footer1-1 :nth-child(5) a{
+    color: rgb(67, 146, 211);
+}
+.footer .footer2{
+    margin-top: 20px;
+}
+.footer .footer2 .footerImg img{
+    margin-bottom: 20px;
+}
+.footer2 :nth-child(3){
+    margin-bottom: 20px;
+}
+.footer2 li a span{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 7px;
+    margin-left: 5px;
+}
