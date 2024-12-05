@@ -8,6 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href=" {{ url_for('static', filename='css/index.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=pin4v9vgja"></script>
+    <script type="text/javascript" src="/static/js/Markerclustrering.js"></script>
+
 </head>
 <body>
     <div class="warp">
@@ -28,46 +34,166 @@
     
         <div class="container">
             <div class="mainBn_title">해양 사고 추세</div>
-
             <div class="mainBn">
                 <div class="mainBn2">
-                    <ul>
-                        <li>
-                            <a href="">
-                                <p clsss="mBn2img"><img src="../img/그래프.JPG" alt="그래프"></p>
-                                <p class="mBn2Txt"></p>
-                            </a>
-                            <a href="">
-                                <p class="mBn2Txt">그래프1</p>
-                            </a>
-                        </li>
-                    </ul>
+                    <p class="mBn2Txt">계절별 해양 사고 현황</p>
+                    <canvas id="myChart" width="510" height="350"></canvas>
+                    {% for obj in data_list%}
+                    <script>
+                        var ctx = document.getElementById('myChart');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: ['0-4시','4-8시','8-12시','12-16시','16-20시','20-24시'],
+                                datasets: [{
+                                    label: '봄',
+                                    data: [ '{{obj.봄1}}',
+                                            '{{obj.봄2}}',
+                                            '{{obj.봄3}}',
+                                            '{{obj.봄4}}',
+                                            '{{obj.봄5}}',
+                                            '{{obj.봄6}}' ],
+                                    backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                    borderColor: ['rgba(255, 99, 132, 1)'],
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: '여름',
+                                    data: [ '{{obj.여름1}}',
+                                            '{{obj.여름2}}',
+                                            '{{obj.여름3}}',
+                                            '{{obj.여름4}}',
+                                            '{{obj.여름5}}',
+                                            '{{obj.여름6}}' ],
+                                    backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+                                    borderColor: ['rgba(75, 192, 192, 1)'],
+                                    borderWidth: 1 
+                                },
+                                {
+                                    label: '가을',
+                                    data: [ '{{obj.가을1}}',
+                                            '{{obj.가을2}}',
+                                            '{{obj.가을3}}',
+                                            '{{obj.가을4}}',
+                                            '{{obj.가을5}}',
+                                            '{{obj.가을6}}' ],
+                                    backgroundColor: ['rgba(255, 206, 86, 0.2)'],
+                                    borderColor: ['rgba(255, 206, 86, 1)',],
+                                    borderWidth: 1 
+                                },
+                                {
+                                    label: '겨울',
+                                    data: [ '{{obj.겨울1}}',
+                                            '{{obj.겨울2}}',
+                                            '{{obj.겨울3}}',
+                                            '{{obj.겨울4}}',
+                                            '{{obj.겨울5}}',
+                                            '{{obj.겨울6}}' ],
+                                    backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+                                    borderColor: ['rgba(54, 162, 235, 1)'],
+                                    borderWidth: 1 
+                                }] 
+                            },
+                            options: {
+                                responsive: false,
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                        beginAtZero: true
+                                        }
+                                    }]
+                                },
+                            }
+                        });
+                        </script>
+                        {% endfor %}  
                 </div>
                 <div class="mainBn2">
-                    <ul>
-                        <li>
-                            <a href="">
-                                <p clsss="mBn2img"><img src="../img/그래프.JPG" alt="그래프"></p>
-                                <p class="mBn2Txt"></p>
-                            </a>
-                            <a href="">
-                                <p class="mBn2Txt">그래프2</p>
-                            </a>
-                        </li>
-                    </ul>
+                    <p class="mBn2Txt">해양 사고 인명 피해 현황</p>
+                    <canvas id="myChart2" width="510" height="335"></canvas>
+                    {% for obj2 in data_list2%}
+                    <script>
+                        var ctx2 = document.getElementById('myChart2');
+                        var myChart2 = new Chart(ctx2, {
+                            type: 'polarArea',
+                            data: {
+                                labels: ['사망 총합','실종 총합','부상 총합'],
+                                datasets: [{
+                                    data: [ '{{obj2.사망총합}}',
+                                            '{{obj2.실종총합}}',
+                                            '{{obj2.부상총합}}'
+                                          ],
+                                    backgroundColor: ['rgba(255, 99, 132, 0.2)','rgba(75, 192, 192, 0.2)','rgba(255, 206, 86, 0.2)'],
+                                    borderColor: ['rgba(255, 99, 132, 1)','rgba(75, 192, 192, 1)','rgba(255, 206, 86, 1)'],
+                                    hoverOffset: 4,
+                                    borderWidth: 1
+                                }] 
+                            },
+                            options: {
+                                responsive: false,
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                        beginAtZero: true
+                                        }
+                                    }]
+                                },
+                            }
+                        });
+                        </script>
+                        <p class="mBn2Txt">총 피해인구 <script>document.write('{{obj2.전체총합}}')</script> 명 (2019~2023년도)</p>
+                        {% endfor %}  
                 </div>
                 <div class="mainBn2">
-                    <ul>
-                        <li>
-                            <a href="">
-                                <p clsss="mBn2img"><img src="../img/그래프.JPG" alt="그래프"></p>
-                                <p class="mBn2Txt"></p>
-                            </a>
-                            <a href="">
-                                <p class="mBn2Txt">그래프2</p>
-                            </a>
-                        </li>
-                    </ul>
+                    <p class="mBn2Txt">해양 사고 유형별 현황</p>
+                    <canvas id="myChart3" width="510" height="335"></canvas>
+                    {% for obj3 in data_list3%}
+                    <script>
+                        var ctx3 = document.getElementById('myChart3');
+                        var myChart3 = new Chart(ctx3, {
+                            type: 'bar',
+                            data: {
+                                labels: ['기관손상','부유물감김','속구손상','시설물손상','안전사고','운항저해','전복','접촉','조타장치손상','좌초','추진축계손상','충돌','침몰','침수','폭발','행방불명','화재','기타'],
+                                datasets: [{
+                                    label: '사고수치',
+                                    data: [ '{{obj3.기관손상}}',
+                                            '{{obj3.부유물감김}}',
+                                            '{{obj3.속구손상}}',
+                                            '{{obj3.시설물손상}}',
+                                            '{{obj3.안전사고}}',
+                                            '{{obj3.운항저해}}',
+                                            '{{obj3.전복}}',
+                                            '{{obj3.접촉}}',
+                                            '{{obj3.조타장치손상}}',
+                                            '{{obj3.좌초}}',
+                                            '{{obj3.추진축계손상}}',
+                                            '{{obj3.충돌}}',
+                                            '{{obj3.침몰}}',
+                                            '{{obj3.침수}}',
+                                            '{{obj3.폭발}}',
+                                            '{{obj3.행방불명}}',
+                                            '{{obj3.화재}}',
+                                            '{{obj3.기타}}'
+                                          ],
+                                    backgroundColor: ['rgba(153, 102, 255, 0.2)'],
+                                    borderColor: ['rgba(153, 102, 255, 1)'],
+                                    borderWidth: 1
+                                }] 
+                            },
+                            options: {
+                                responsive: false,
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                        beginAtZero: true
+                                        }
+                                    }]
+                                },
+                            }
+                        });
+                    </script>
+                    <p class="mBn2Txt">총 피해건수 <script>document.write('{{obj3.총합}}')</script> 명 (2019~2023년도)</p> 
+                    {% endfor %} 
                 </div>   
             </div><!-- mainBn -->
             <div class="mainBn2_1">경고!경고!경고!경고!경고!경고!경고!경고!</div>
@@ -156,10 +282,74 @@
                             </div>
                         </form>
                     </div>
-                    <a href="">
-                        <p clsss="mBn2img"><img src="../img/지도.JPG" alt="그래프"></p>
-                    </a>
-                </div>
+                    <div id="map" style="width:100%; height:800px;">
+
+                        <script>
+                            var map = new naver.maps.Map("map", {
+                                zoom: 6,
+                                center: new naver.maps.LatLng(36.2253017, 127.6460516),
+                                zoomControl: true,
+                                zoomControlOptions: {
+                                    position: naver.maps.Position.TOP_LEFT,
+                                    style: naver.maps.ZoomControlStyle.SMALL
+                                }
+                            });
+                        
+
+                            // 모든 마커를 저장할 배열
+                            var markers = [];
+
+                            // 서버에서 가져온 데이터를 기반으로 마커 추가
+                            {% for obj4 in data_list4 %}
+                            var marker = new naver.maps.Marker({
+                                position: new naver.maps.LatLng('{{obj4.la}}', '{{obj4.lo}}'),
+                                map: map
+                            });
+                            markers.push(marker); // 마커 배열에 추가
+                            {% endfor %}
+                    
+                      
+                           var htmlMarker1 = {
+                                content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(/static/src/img/cluster-marker-1.png);background-size:contain;"></div>',
+                                size: N.Size(40, 40),
+                                anchor: N.Point(20, 20)
+                            },
+                            htmlMarker2 = {
+                                content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(/static/src/img/cluster-marker-2.png);background-size:contain;"></div>',
+                                size: N.Size(40, 40),
+                                anchor: N.Point(20, 20)
+                            },
+                            htmlMarker3 = {
+                                content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(/static/src/img/cluster-marker-3.png);background-size:contain;"></div>',
+                                size: N.Size(40, 40),
+                                anchor: N.Point(20, 20)
+                            },
+                            htmlMarker4 = {
+                                content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(/static/src/img/cluster-marker-4.png);background-size:contain;"></div>',
+                                size: N.Size(40, 40),
+                                anchor: N.Point(20, 20)
+                            },
+                            htmlMarker5 = {
+                                content: '<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(/static/src/img/cluster-marker-5.png);background-size:contain;"></div>',
+                                size: N.Size(40, 40),
+                                anchor: N.Point(20, 20)
+                            };
+
+                            var markerClustering = new MarkerClustering({
+                                minClusterSize: 2,
+                                maxZoom: 13,
+                                map: map,
+                                markers: markers,
+                                disableClickZoom: false,
+                                gridSize: 120,
+                                icons: [htmlMarker1, htmlMarker2, htmlMarker3, htmlMarker4, htmlMarker5],
+                                indexGenerator: [10, 100, 200, 500, 1000],
+                                stylingFunction: function(clusterMarker, count) {
+                                    $(clusterMarker.getElement()).find('div:first-child').text(count);
+                                }
+                            });
+                        </script> 
+                    </div>
                 <div class="mainBn3_1">
                     <ul>
                         <li>위치저장1 <span>장소</span> <span>00:00:00</span> <span>위험도</span></li>

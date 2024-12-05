@@ -14,7 +14,7 @@ img{vertical-align: top; border: 0;}
 a{text-decoration: none; color: rgb(20, 20, 20);}
 
 .wrap{
-    width: 100%;
+    width: 1600px;
     min-height: 1200px;
 }
 
@@ -57,7 +57,7 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     margin-left: -800px;
 } */
 
-.main2{
+/* .main2{
     width: 1200px;
     margin: 0 auto;
     justify-content: space-between;
@@ -76,7 +76,7 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     height: 60px;
     font-size: 17px;
     margin-bottom: 50px;
-}
+} */
 
 .main2 .ulsanNews ul li{
     margin :20px 20px;
@@ -99,8 +99,13 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     border-radius: 10px;
 }
 
+.container{
+    width: 1600px;
+    margin: 0 auto;
+}
+
 .mainBn{
-    width: 1200px;
+    width: 1600px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -123,36 +128,10 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     justify-content: space-between;
 }
 
-/* .mainBn1{
-    background-color: rgb(255, 255, 255);
-    box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    border-radius: 10px;
-    font-size: 17px;
-    height: 460px;
-    width: 800px;
-}
-
-.mainBn1 ul li {
-    padding: 15px;
-    border-bottom: gainsboro solid 2px;
-}
-
-
-.mainBn1 ul li a .mainBn1T{
-    display: flex; 
-    justify-content: space-between;
-    margin-bottom: 5px;
-    font-size: 19px;
-}
-
-.mBn1Date{
-    font-size: 12px;
-} */
-
 .mainBn_title{
-    width: 1200px;
+
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-size: 30px;
     font-weight: bold;
 }
@@ -162,12 +141,16 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 10px;
     font-size: 17px;
-    height: 260px;
-    width: 385px;
+    height: 450px;
+    width: 520px;
+}
+
+.mBn2Txt{
+    margin: 20px 0px;
 }
 
 .mainBn2_1{
-    width: 1200px;
+    width: 1600px;
     margin: 0 auto;
     background-color: rgb(255, 255, 255);
     box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -212,7 +195,7 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
 }
 
 .mainBn_1 {
-    width: 1200px;
+    width: 1600px;
     margin: 0 auto;
 }
 
