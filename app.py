@@ -3,10 +3,6 @@ import mariadbQuery
 
 app = Flask(__name__)
 
-# @app.route('/')
-# def index():
-#     return render_template("/main/index.html")
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     error = None
@@ -156,8 +152,6 @@ def index():
     
     cursor.close()
     dbConn.close()  
-
-    print(data_list4)
 
     return render_template('/main/index.html', error=error, data_list=data_list, data_list2=data_list2, data_list3=data_list3, data_list4=data_list4)
 
